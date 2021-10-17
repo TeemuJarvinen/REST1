@@ -12,23 +12,25 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/api/dictionary", (req, res) => {
+app.get("/dictionary", (req, res) => {
   res.json(readFile());
 });
 
 // Get a translation to the Finnish word
-app.get("/api/dictionary/:word", (req, res) => {
+app.get("/dictionary/:word", (req, res) => {
   let dictionary = readFile();
   let correctWord = [];
-  let wordFount = false;
+  let wordFound = false;
   dictionary.forEach((element) => {
     let words = element.split(" ");
+    console.log(words);
     if (words[0] == req.params.word) {
       correctWord = words[1];
-      wordFount = true;
+      wordFound = true;
     }
   });
-  if (wordFount) {
+  if (wordFound) {
+    correctWord = correctWord.replace(/(\r\n|\n|\r)/gm, "");
     res.json(correctWord);
   } else {
     res.status(400).json(`Unknown word - ${req.params.word}`);
@@ -36,7 +38,7 @@ app.get("/api/dictionary/:word", (req, res) => {
 });
 
 // Create a new translation to the Finnish word
-app.post("/api/dictionary", (req, res) => {
+app.post("/dictionary", (req, res) => {
   // How to add in postman || Lisäys postmanissa muotoa
   // {
   //   "Finnish": "Posti",
@@ -68,7 +70,8 @@ let readFile = () => {
     flag: "r",
   });
 
-  dataSplit = data.split("\n");
+  dataSplit = data.replace(/(\r)/gm, "");
+  dataSplit = dataSplit.split("\n");
   return dataSplit;
 };
 

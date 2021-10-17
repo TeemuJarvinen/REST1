@@ -5,9 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="CSS/style.css" />
-    <title>App</title>
+    <title>Dictionary App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
-    <h1>App - still in development</h1>
+    <div class="container">
+      <h1>Dictionary App - still in development</h1>
+      <h4>"/dictionary" to see all translations in dictionary</h4>
+      <h4>
+        "/dictionary/"-word you want to translate here" to see all translations
+        in dictionary
+      </h4>
+
+      <form id="postForm" name="form">
+        <th>Sanapari</th>
+        <br />
+        <td>
+          <input
+            id="finnishWord"
+            type="text"
+            placeholder="Finnish word"
+            size="50"
+          />
+        </td>
+        <br />
+        <td>
+          <input
+            id="englishWord"
+            type="text"
+            placeholder="English word"
+            size="50"
+          />
+        </td>
+        <br />
+        <td>
+          <input id="postForm" type="submit" value="Tallenna" />
+        </td>
+        <br />
+      </form>
+    </div>
+
+    <script></script>
   </body>
 </html>

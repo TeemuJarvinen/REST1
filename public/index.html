@@ -11,13 +11,28 @@
   <body>
     <div class="container">
       <h1>Dictionary App - still in development</h1>
-      <h4>"/dictionary" to see all translations in dictionary</h4>
-      <h4>
-        "/dictionary/"-word you want to translate here" to see all translations
-        in dictionary
-      </h4>
 
-      <form id="postForm" name="form">
+      <h2 id="answerfield">Finnish Word - English Word</h2>
+      <form
+        id="searchTranslateForm"
+        action="http://localhost:5000/dictionary"
+        name="form"
+      >
+        <th>Etsi käännös sanalle</th>
+        <br />
+        <td>
+          <input
+            id="searchTranslation"
+            type="text"
+            placeholder="Finnish word"
+          /><br />
+        </td>
+        <td>
+          <input id="searchTranslationButton" type="button" value="Tallenna" />
+        </td>
+      </form>
+
+      <form id="postForm" action="http://localhost:5000/dictionary" name="form">
         <th>Sanapari</th>
         <br />
         <td>
@@ -43,8 +58,45 @@
         </td>
         <br />
       </form>
+
+      <p>"/dictionary" to see all translations in dictionary</p>
+      <p>
+        "/dictionary/"-word you want to translate here" to see all translations
+        in dictionary
+      </p>
     </div>
 
-    <script></script>
+    <script>
+      $(document).ready(function () {
+        $("#postForm").submit(function (e) {
+          e.preventDefault();
+
+          let finWord = $("#finnishWord").val();
+          let engWord = $("#englishWord").val();
+          let url = $(this).attr("action");
+
+          $.post(
+            url,
+            { Finnish: finWord, English: engWord },
+            function (data, textStatus, jqXHR) {
+              console.log("Post saved");
+              console.log(data);
+            }
+          );
+        });
+
+        $("#searchTranslationButton").click(function (e) {
+          e.preventDefault();
+          let wordToTranslate = $("#searchTranslation").val();
+          let url = "http://localhost:5000/dictionary/" + wordToTranslate;
+
+          $.get(url, function (data, textStatus, jqXHR) {
+            document.getElementById(
+              "answerfield"
+            ).innerHTML = `${wordToTranslate} - ${data}`;
+          });
+        });
+      });
+    </script>
   </body>
 </html>

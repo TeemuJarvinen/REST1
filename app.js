@@ -1,3 +1,9 @@
+// -------------- TODO ------------
+
+// > If käännös sanalle - empty
+// > if käännös sanalle - Wrong word
+// CSS
+
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -76,5 +82,5 @@ let readFile = () => {
 };
 
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+  console.log(`Server started on port http://localhost:${PORT}`);
 });

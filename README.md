@@ -3,7 +3,8 @@
 School assigment for web-programming
 
 To Learn 
-  - Node
+  - REST API
   - Express
+  - Node
   - Fullstack development
 

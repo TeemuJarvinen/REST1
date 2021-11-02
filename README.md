@@ -3,7 +3,7 @@
 School assigment for web-programming
 
 To Learn 
-    - Node
-    - Express
-    - Fullstack development
+  - Node
+  - Express
+  - Fullstack development
 
